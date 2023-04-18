@@ -12,7 +12,7 @@ router.get('/', async(req, res) => {
     res.status(200).json(categoryData);
   }
   catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
@@ -24,21 +24,28 @@ router.get('/:id', async (req, res) => {
     });
     res.status(200).json(catById);
   } catch(err){
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   // create a new category
-  try{} catch(err){}
+  try{
+    const createCat = await Category.create(req.body)
+    res.status(200).json(createCat);
+  } catch(err){
+    res.status(400).json(err);
+  }
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  try{} catch(err){}
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  try{} catch(err){}
 });
 
 module.exports = router;
